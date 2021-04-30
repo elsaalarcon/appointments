@@ -101,7 +101,7 @@ ActiveRecord::Schema.define(version: 2021_04_29_004130) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.bigint "role_id", null: false
+    t.integer "role_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "email", default: "", null: false
@@ -111,7 +111,6 @@ ActiveRecord::Schema.define(version: 2021_04_29_004130) do
     t.datetime "remember_created_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.index ["role_id"], name: "index_users_on_role_id"
   end
 
   add_foreign_key "appointments", "rooms"
@@ -121,5 +120,4 @@ ActiveRecord::Schema.define(version: 2021_04_29_004130) do
   add_foreign_key "prescriptions", "notes", column: "notes_id"
   add_foreign_key "profiles", "specialities"
   add_foreign_key "profiles", "users"
-  add_foreign_key "users", "roles"
 end
